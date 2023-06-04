@@ -1,4 +1,4 @@
-https://www.codingninjas.com/codestudio/problems/set-matrix-zeros_8230862
+//https://www.codingninjas.com/codestudio/problems/set-matrix-zeros_8230862
 
 #include <bits/stdc++.h>
 
