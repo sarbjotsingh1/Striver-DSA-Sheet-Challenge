@@ -1,0 +1,36 @@
+int parition(vector<int>& arr,int low,int high){
+	int pivot = arr[low];
+	int i = low;
+	int j = high;
+	
+	while(i<j){
+		while(arr[i] <= pivot && i<high)
+			i++;
+		while(arr[j] >= pivot && j>low)
+			j--;
+		if(i<j)
+			swap(arr[i],arr[j]);
+	}
+	swap(arr[low],arr[j]);
+	return j;
+}
+int quickSelect(vector<int>& arr,int low,int high,int k){
+	if(low>=high)
+		return arr[low];
+	int pi = parition(arr,low,high);
+	if(pi + 1 == k)
+		return arr[pi];
+	if(pi + 1 > k)
+		return quickSelect(arr,low,pi-1,k);
+	else
+		return quickSelect(arr,pi+1,high,k);
+	
+}
+vector<int> kthSmallLarge(vector<int> &arr, int n, int k)
+{
+	// Write your code here.
+	int small = quickSelect(arr,0,n-1,k);
+	int large = quickSelect(arr,0,n-1,n-k+1);
+	return{small,large};
+}
+
