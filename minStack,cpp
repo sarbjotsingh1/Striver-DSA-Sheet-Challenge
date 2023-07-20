@@ -1,0 +1,49 @@
+#include <stack>
+#include <climits>
+
+class minStack {
+    stack<int> stk;
+    stack<int> minStk;
+    
+public:
+    minStack() {
+        // Constructor
+    }
+    
+    void push(int num) {
+        stk.push(num);
+        if (minStk.empty() || num <= minStk.top()) {
+            minStk.push(num);
+        }
+    }
+    
+    int pop() {
+        if (stk.empty()) {
+            return -1; // Stack is empty
+        }
+        
+        int topElement = stk.top();
+        stk.pop();
+        if (topElement == minStk.top()) {
+            minStk.pop();
+        }
+        
+        return topElement;
+    }
+    
+    int top() {
+        if (stk.empty()) {
+            return -1; // Stack is empty
+        }
+        
+        return stk.top();
+    }
+    
+    int getMin() {
+        if (minStk.empty()) {
+            return -1; // Stack is empty
+        }
+        
+        return minStk.top();
+    }
+};
